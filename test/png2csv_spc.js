@@ -1,8 +1,9 @@
-var fs = require('fs')
-var path = require('path')
-const pc = require('../png2csv')
+const fs = require('fs')
+const pc = require('../lib/png2csv')
 
-const png = './1bg.png'
-const config = '../ind.json'
+const png = './test/ts.png'
+const config = './test/ts.json'
 
-pc.png2csv(png, config)
+const cf = fs.readFileSync(config)
+const r =  pc.png2csv(png, JSON.parse(cf))
+console.log(r[0])

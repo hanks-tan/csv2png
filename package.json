@@ -1,0 +1,30 @@
+{
+  "name": "csv2png",
+  "version": "1.0.0",
+  "description": "提供将csv压缩成png图片的功能，以及将压缩后的png还原成csv文件。",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "pngjs": "^6.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanks-tan/csv2png.git"
+  },
+  "keywords": [
+    "png",
+    "csv"
+  ],
+  "author": "hanks-tan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanks-tan/csv2png/issues"
+  },
+  "homepage": "https://github.com/hanks-tan/csv2png#readme"
+}

@@ -1,22 +1,22 @@
 function pngToData () {
   const canvas = document.createElement('canvas')
-  canvas.width = 400
-  canvas.height = 56
   const ele = document.getElementById('area')
   ele.appendChild(canvas)
   const ctx = canvas.getContext('2d')
   const img = new Image()
   img.onload = function () {
-    ctx.drawImage(img, 0, 0, 400, 56)
-    const data = ctx.getImageData(0, 0, 400, 56)
-    const url = '../ind.json'
+    canvas.height = img.height
+    canvas.width = img.width
+    ctx.drawImage(img, 0, 0, width, height)
+    const data = ctx.getImageData(0, 0, width, height)
+    const url = './ts.json'
     fetch(url).then((res) => {
       return res.json()
     }).then((cf) => {
       parseData(data, cf)
     })
   }
-  img.src = './1bg.png'
+  img.src = './ts.png'
 }
 
 function swapMap (map) {
@@ -88,7 +88,6 @@ function parseData (pngData, cfJson) {
         return intV
       }
     })
-    console.log(lineValues)
   }
 }
 
