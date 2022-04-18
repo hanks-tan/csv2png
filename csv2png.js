@@ -97,7 +97,7 @@ function csv2png (csvData, options) {
         } else {
           // TODO 后续增加其它类型编译
         }
-        color = tran.intToRgb(index)
+        color = tran.intToColor(index)
       }
       
       color.push(255)
@@ -171,11 +171,6 @@ function fixedWidth(width, originWidth, originHeight) {
   const out = width * height - area
   return [width, height, out]
 }
-
-// resovleNum(531)
-// resovleNum(535)
-// resovleNum(5351)
-// resovleNum(64000)
 
 module.exports = {
   csv2png

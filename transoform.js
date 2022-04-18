@@ -5,29 +5,35 @@ rgb: (r, g, b)
 */
 
 
-const ds = function (d, n = 256) {
+/**
+ * 求商与模
+ * @param {Number} d 被除数
+ * @param {Number} n 除数
+ * @returns 
+ */
+function ds (d, n = 256) {
   const b = d % n
   const a = Math.floor(d / 256)
   return [a, b]
 }
 /**
- * 
- * @param {*} d 
- * @param {*} outType 
- * @returns rbg -> [r, b ,b], other -> 'FFDDFF'
+ * 将10进制数转换为颜色
+ * @param {Number} d 
+ * @param {String} outType 输出类型 rgb | hex
+ * @returns {Array | String} -> [r, b ,b], other -> 'FFDDFF'
  */
-function intToRgb(d, outType = 'rgb') {
-  let [r, g, b, a] = [0, 0, 0, 0]
+function intToColor(d, outType = 'rgb') {
+  if (d > Math.pow(256, 3)) {
+    console.warn('多大的值,无法转换', d)
+    return [255, 255, 255, 0]
+  }
+  let [r, g, b] = [0, 0, 0, 0]
   if (d < 256) {
     b = d
   } else {
     [g, b] = ds(d, 256)
     if (g > 255) {
       [r, g] = ds(g, 256)
-      if (r > 255) {
-        console.log('多大的值,无法转换', d)
-        return [255, 255, 255, 0]
-      }
     }
   }
 
@@ -41,7 +47,13 @@ function intToRgb(d, outType = 'rgb') {
   }
 }
 
-const rgbToInt = function (color, type = 'rgb') {
+/**
+ * 颜色转换为int
+ * @param {String || Array } color 
+ * @param {String} type 
+ * @returns {Number}
+ */
+function colorToInt (color, type = 'rgb') {
   if (type === 'hex') {
     const r = parseInt(color.slice(0, 2), 16)
     const g = parseInt(color.slice(2, 4), 16)
@@ -53,15 +65,7 @@ const rgbToInt = function (color, type = 'rgb') {
   }
 }
 
-// const data = [12, 263, 255, 65536]
-// data.forEach((d) => {
-//   const s = intToRgb(d)
-//   console.log(d, s)
-//   const t = rgbToInt(s)
-//   console.log('返回', t)
-// })
-
 module.exports = {
-  intToRgb,
-  rgbToInt
+  intToColor,
+  colorToInt
 }

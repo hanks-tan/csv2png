@@ -38,7 +38,7 @@ function toImg(csvData) {
         } else {
           const index = tree.findIndex((t) => t.code === code)
           tree = tree[index]?.children
-          const color = tran.intToRgb(index + 1) // 从有颜色开始
+          const color = tran.intToColor(index + 1) // 从有颜色开始
           return color
         }
       }
@@ -46,7 +46,7 @@ function toImg(csvData) {
     })
     const data = values.slice(7).map((v) => {
       v = parseInt(v)
-      return tran.intToRgb(v)
+      return tran.intToColor(v)
     })
     const lineDatas = citys.concat(data)
     if (!values[0] === date) {

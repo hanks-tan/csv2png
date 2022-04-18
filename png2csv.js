@@ -1,9 +1,9 @@
-var fs = require('fs')
+const fs = require('fs')
 const PNG = require('pngjs').PNG
 const tran = require('./transoform')
 
 /**
- * 
+ * 交换Map对象的键值
  * @param {Map} map 
  */
 function swapMap (map) {
@@ -47,12 +47,12 @@ function png2csv (png, cf, options) {
       let datas = [] // 点值集合
       for(let y = 0; y < this.height; y++) {
         for (let x = 0; x < this.width; x++) {
-          var idx = (this.width * y + x) << 2;
+          const idx = (this.width * y + x) << 2;
           let r = this.data[idx]
           let g = this.data[idx + 1]
           let b = this.data[idx + 2]
 
-          let valueInPix = tran.rgbToInt([r, g, b])
+          let valueInPix = tran.colorToInt([r, g, b])
           datas.push(valueInPix)
         }
       }

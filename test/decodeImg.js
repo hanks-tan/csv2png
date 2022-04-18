@@ -50,7 +50,7 @@ function parseData (pngData, cfJson) {
       let g = pngData.data[idx + 1]
       let b = pngData.data[idx + 2]
 
-      let valueInPix = rgbToInt([r, g, b])
+      let valueInPix = colorToInt([r, g, b])
       datas.push(valueInPix)
     }
   }
@@ -92,7 +92,7 @@ function parseData (pngData, cfJson) {
   }
 }
 
-const rgbToInt = function (color, type = 'rgb') {
+const colorToInt = function (color, type = 'rgb') {
   if (type === 'hex') {
     const r = parseInt(color.slice(0, 2), 16)
     const g = parseInt(color.slice(2, 4), 16)
