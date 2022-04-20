@@ -1,9 +1,16 @@
 const fs = require('fs')
-const pc = require('../lib/png2csv')
+const png2csv = require('../lib/png2csv')
 
-const png = './test/ts.png'
-const config = './test/ts.json'
+const png = './test/data/sub.png'
+const config = './test/data/sub.json'
 
 const cf = fs.readFileSync(config)
-const r =  pc.png2csv(png, JSON.parse(cf))
-console.log(r[0])
+const data = JSON.parse(cf)
+const opt = {
+  png,
+  config: data
+}
+const pc = new png2csv(opt)
+pc.parse().then((data) => {
+  console.log('结构',data[0])
+})

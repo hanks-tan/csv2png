@@ -1,13 +1,14 @@
-var fs = require('fs')
-var path = require('path')
-const pc = require('../lib/csv2png')
+const {Csv2png} = require('../index')
 
-const csv = 'D:\\tang\\project\\test\\csv2png\\csv2png\\data\\sub.csv'
-// const csvData = fs.readFileSync(csv, 'utf-8')
+const csv = './test/data/sub.csv'
 
-const options = {
+const pc = new Csv2png({
   int: [7, 8, 9, 10],
+  filePath: csv,
   width: 400
-}
-pc.csv2png(csv, 'ts', options)
+})
 
+// const r = pc.compile()
+// console.log(r)
+
+pc.write('sub')

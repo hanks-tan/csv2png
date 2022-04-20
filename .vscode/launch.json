@@ -5,9 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "csv2png",
+      "program": "${workspaceFolder}/test/csv2png_spc.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
       "type": "pwa-node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "png2csv",
       "skipFiles": [
         "<node_internals>/**"
       ],

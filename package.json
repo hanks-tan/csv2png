@@ -3,15 +3,23 @@
   "version": "1.0.0",
   "description": "提供将csv压缩成png图片的功能，以及将压缩后的png还原成csv文件。",
   "main": "index.js",
+  "type": "commonjs",
   "directories": {
     "test": "test"
   },
   "dependencies": {
+    "node-fetch": "^3.2.3",
     "pngjs": "^6.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify": "17.0.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.2"
+  },
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "browserify lib/png2csv.js --standalone png2csv > browser.js"
   },
   "repository": {
     "type": "git",
