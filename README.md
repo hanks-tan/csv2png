@@ -33,9 +33,9 @@ console.log(r)
 ```
 
 **方法**
-- compile
+- compile  
   输入一个包含转换结果的对象
-- write(name)
+- write(name)  
   转换结果写入文件,name.png，name.json
 
 ## 2.png2csv
@@ -63,5 +63,5 @@ pc.parse().then((data) => {
 ['date', 'country', 'countryCode', ...]
 ```
 **方法**
-1. parse 异步方法
+1. parse 异步方法  
 解析png，返回二维数组，数组中每一项对应原csv的每一列
