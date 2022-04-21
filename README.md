@@ -11,6 +11,7 @@
 
 # 用法
 ## 1. csv2png
+**e.g**
 ```js
 const {Csv2png} = require('csv2png')
 
@@ -36,3 +37,31 @@ console.log(r)
   输入一个包含转换结果的对象
 - write(name)
   转换结果写入文件,name.png，name.json
+
+## 2.png2csv
+**e.g**
+```js
+const fs = require('fs')
+const png2csv = require('../lib/png2csv')
+
+const png = './test/data/sub.png'
+const config = './test/data/sub.json'
+
+const cf = fs.readFileSync(config)
+const data = JSON.parse(cf)
+const opt = {
+  png,
+  config: data
+}
+const pc = new png2csv(opt)
+pc.parse().then((data) => {
+  console.log(data[0])
+})
+```
+输入
+```js
+['date', 'country', 'countryCode', ...]
+```
+**方法**
+1. parse 异步方法
+解析png，返回二维数组，数组中每一项对应原csv的每一列

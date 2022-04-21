@@ -12,5 +12,5 @@ const opt = {
 }
 const pc = new png2csv(opt)
 pc.parse().then((data) => {
-  console.log('结构',data[0])
+  console.log('header',data[0])
 })
