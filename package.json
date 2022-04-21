@@ -1,6 +1,6 @@
 {
   "name": "csv2png",
-  "version": "1.0.0",
+  "version": "1.0.0-beta1",
   "description": "提供将csv压缩成png图片的功能，以及将压缩后的png还原成csv文件。",
   "main": "index.js",
   "type": "commonjs",
@@ -19,7 +19,8 @@
   },
   "scripts": {
     "test": "test",
-    "build": "browserify lib/png2csv.js --standalone png2csv > browser.js"
+    "build": "browserify lib/png2csv.js --standalone png2csv > browser.js",
+    "pub:test": "np --no-git"
   },
   "repository": {
     "type": "git",

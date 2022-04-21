@@ -12,7 +12,7 @@
 # 用法
 ## 1. csv2png
 ```js
-const {Csv2png} = require('../index')
+const {Csv2png} = require('csv2png')
 
 const csv = '/data/sub.csv'
 
