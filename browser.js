@@ -3,10 +3,16 @@
 "use strict"
 
 const utils = require('./utils')
+/**
+ * png转csv，值针对右csv2png程序转换结果的还原处理
+ * @param {Object} options
+ * options属性:
+ *  png -> 本地png文件地址，或者网络上的png路径
+ *  config -> 配置，即生成png时同时的json文件内容
+ */
 const Png2csv = function (options) {
   this._png = options.png
   this._config = options.config
-  this._configOptions = this._config.options
   this._origin = this._config.origin
 
   this._isNode = !!(typeof process !== 'undefined' && process.version);
@@ -40,23 +46,30 @@ Png2csv.prototype._getPngData  = async function () {
   }
 }
 
+// Png2csv.prototype._getPngDataByInner = function () {
+//   return new Promise((resolve) => {
+//     // eslint-disable-next-line no-undef
+//     const canvas = document.createElement('canvas')
+//     const ctx = canvas.getContext('2d')
+//     // eslint-disable-next-line no-undef
+//     const img = new Image()
+//     img.onload = function () {
+//       const width = img.width
+//       const height = img.height
+//       canvas.width = width
+//       canvas.height = height
+//       ctx.drawImage(img, 0, 0, width, height)
+//       const data = ctx.getImageData(0, 0, width, height)
+//       resolve(data)
+//     }
+//     img.src = this._png
+//   })
+// }
 Png2csv.prototype._getPngDataByInner = function () {
-  return new Promise((resolve) => {
-    // eslint-disable-next-line no-undef
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
-    // eslint-disable-next-line no-undef
-    const img = new Image()
-    img.onload = function () {
-      const width = img.width
-      const height = img.height
-      canvas.width = width
-      canvas.height = height
-      ctx.drawImage(img, 0, 0, width, height)
-      const data = ctx.getImageData(0, 0, width, height)
-      resolve(data)
-    }
-    img.src = this._png
+  utils.http(this._png).then((res) => {
+    return res.arrayBuffer().then((data) => {
+      console.log(data)
+    })
   })
 }
 
@@ -146,6 +159,9 @@ module.exports = Png2csv
 },{"./utils":2,"_process":65,"fs":12,"pngjs":62}],2:[function(require,module,exports){
 (function (process){(function (){
 
+
+const isNode = !!(typeof process !== 'undefined' && process.version);
+
 /* 
 hex: 十六进制颜色
 rgb: (r, g, b) 
@@ -212,9 +228,17 @@ function colorToInt (color, type = 'rgb') {
   }
 }
 
-const isNode = !!(typeof process !== 'undefined' && process.version);
+// function http () {
+//   if (isNode) {
+//     return nodeFetch
+//   } else {
+//     // eslint-disable-next-line no-undef
+//     return window.fetch
+//   }
+// }
 
 module.exports = {
+  http,
   intToColor,
   colorToInt,
   isNode
