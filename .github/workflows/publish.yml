@@ -1,5 +1,5 @@
 name: publish package
-on: push
+on:
   push:
     tags:
       - 'v*'
